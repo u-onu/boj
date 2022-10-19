@@ -29,13 +29,13 @@ int bfs(){
     for(int i = 0; i < 4; i++){
       int ny = temp.y + dy[i];
       int nx = temp.x + dx[i];
-      
+
       if(ny >= 0 && ny < n && nx >= 0 && nx < m){
         if(box[ny][nx] == 0){
           box[ny][nx] = 1;
           unripe_tomato_cnt--;
           if(unripe_tomato_cnt == 0)
-            return temp.time + 1;
+            return temp.time;
           q.push(record(ny, nx, temp.time + 1));
         }
       }
@@ -62,7 +62,7 @@ int main(){
       if(input == 0)
         unripe_tomato_cnt++;
       else if(input == 1)
-        q.push(record(i, j, 0));
+        q.push(record(i, j, 1));
     }
   }
 
