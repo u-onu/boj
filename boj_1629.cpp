@@ -6,13 +6,12 @@ ll mod;
 
 ll pow(ll x, ll n){
   if(n == 0) return 1;
-  if(n == 1) return x % mod;
-
-  ll half = pow(x, n / 2);
-  if(n % 2 == 1)
-    return half % mod * half % mod * x % mod;
-  else
-    return half % mod * half % mod;
+  
+  if(n % 2 == 1) return x * pow(x, n - 1) % mod;
+  else{
+      ll half = pow(x, n / 2);
+      return half * half % mod;
+  }
 }
 
 int main(){
