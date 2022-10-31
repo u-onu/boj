@@ -12,7 +12,7 @@ matrix ans;
 void init(){
   cin >> n >> b;
   A.resize(n, vector<ll>(n));
-  ans.resize(n, vector<ll>(n));
+  ans.resize(n, vector<ll>(n, 0));
 
   for(int i = 0; i < n; i++){
     for(int j = 0; j < n; j++)
@@ -22,7 +22,7 @@ void init(){
 }
 
 void multiply_matrix(matrix &x, matrix &y){
-  matrix temp(n, vector<ll>(n));
+  matrix temp(n, vector<ll>(n, 0));
 
   for(int i = 0; i < n; i++){
     for(int j = 0; j < n; j++){
