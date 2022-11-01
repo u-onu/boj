@@ -55,7 +55,7 @@ void print_matrix(){
 int main(){
   ios_base::sync_with_stdio(false);
   cin.tie(nullptr); cout.tie(nullptr);
-  freopen("init.txt", "r", stdin);
+  // freopen("input.txt", "r", stdin);
 
   init();
   power_matrix();
