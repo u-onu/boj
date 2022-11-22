@@ -22,7 +22,7 @@ int find_robot(int x){
     return robot[x] = find_robot(robot[x]);
 }
 
-void union_items(int x, int y){
+void union_parts(int x, int y){
   x = find_robot(x);
   y = find_robot(y);
   if(x != y){
@@ -39,7 +39,7 @@ void solve(){
     if(op == 'I'){
       int a, b;
       cin >> a >> b;
-      union_items(a, b);
+      union_parts(a, b);
     }
     else{ // op == 'Q'
       int c;
