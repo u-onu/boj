@@ -3,19 +3,35 @@
 #include <algorithm>
 using namespace std;
 
-#define N 1001
+#define N 100001
 
-struct record{
+struct edge{
   int from, to, cost;
+  bool operator<(edge &e)
+    {return cost < e.cost;}
 };
 
+vector<edge> edges;
 int parent[N];
-vector<record> edges;
 int n, m;
-int min_cost;
+long long sum_cost, min_cost;
 
-bool cmp_cost(record x, record y){
-  return x.cost < y.cost;
+int find_parent(int x){
+  if(parent[x] == x)
+    return x;
+  return parent[x] = find_parent(parent[x]);
+}
+
+bool union_groups(int x, int y){
+  x = find_parent(x);
+  y = find_parent(y);
+  if(x == y)  return false;
+
+  if(x < y)
+    parent[y] = x;
+  else
+    parent[x] = y;
+  return true;
 }
 
 void init(){
@@ -25,34 +41,18 @@ void init(){
   edges.resize(m);
   for(int i = 0; i < m; i++)
     cin >> edges[i].from >> edges[i].to >> edges[i].cost;
-  sort(edges.begin(), edges.end(), cmp_cost);
+  sort(edges.begin(), edges.end());
   
   // init parent
   for(int i = 1; i <= n; i++)
     parent[i] = i;
 }
 
-int find(int node){
-  if(parent[node] == node)
-    return node;
-  else
-    return parent[node] = find(parent[node]);
-}
-
-void unite(record& r){
-  int u = find(r.from);
-  int v = find(r.to);
-
-  if(u == v)  return;
-
-  parent[u] = v;
-  min_cost += r.cost;
-}
-
 void solve(){
-  for(record &edge: edges)
-    unite(edge);
-  
+  for(edge &e: edges){
+    if(union_groups(e.from, e.to))
+      min_cost += e.cost;
+  }
   cout << min_cost << '\n';
 }
 
