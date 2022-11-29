@@ -13,8 +13,7 @@ struct edge{
 
 vector<edge> edges;
 int parent[N];
-int n, m;
-long long sum_cost, min_cost;
+int min_cost;
 
 int find_parent(int x){
   if(parent[x] == x)
@@ -35,6 +34,7 @@ bool union_groups(int x, int y){
 }
 
 void init(){
+  int n, m;
   cin >> n >> m;
 
   // init edges
