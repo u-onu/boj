@@ -5,6 +5,7 @@ using namespace std;
 
 bool isprime[N];
 
+
 void init_isprime(){
   fill(isprime, isprime + N, true);
   isprime[0] = isprime[1] = false;
